@@ -2,14 +2,20 @@ const urlApp = 'http://127.0.0.1:5502';
 
 let animales = ( () => {
   const getData = async () =>{
-    const res = await fetch(urlApp);
+    const res = await fetch(`${urlApp}/animales.json`);
     const data = await res.json();
     return data;
   }
   return {getData}
 } )()
 
-export default animales
+//export const eh=''
+//export const ehg=''
+//export const ehi=''
+
+export default animales;
+
+
 
 
 /*const urlApp = 'http://127.0.0.1:5502';
