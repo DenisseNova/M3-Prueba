@@ -48,3 +48,18 @@ body {
     max-width: 85% !important;
 }
 
+.card {
+  background-color: #868686;
+}
+.micard > div > i {
+  font-size: 1.5rem;
+}
+
+.micard  {
+  width: 30%;
+  margin: 0.2rem;
+}
+.micard .card-body {
+  padding: .7rem;
+  cursor: pointer;
+}

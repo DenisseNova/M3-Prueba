@@ -1,3 +1,5 @@
+const urlApp = 'http://127.0.0.1:5502';
+
 class Animales {
   constructor (nombre, edad, img, comentarios, sonidos){
     let Nombre = nombre;
@@ -19,7 +21,7 @@ class Animales {
     return this.getEdad();
   }
   get Imagenes(){
-    return this.getImg();
+    return `${urlApp}/assets/imgs/${this.getImg()}`
   }
   get Sonido(){
     return this.getSonido();
