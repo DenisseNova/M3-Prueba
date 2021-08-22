@@ -28,6 +28,5 @@ class Animales {
     return this.setComentarios(nuevoComentarios);
   }
 }
-console.log(new Animales("oso", "12", "..","sound"))
 
 export default Animales;
