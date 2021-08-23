@@ -53,6 +53,7 @@ body {
 }
 .micard > div > i {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .micard  {
@@ -61,5 +62,4 @@ body {
 }
 .micard .card-body {
   padding: .7rem;
-  cursor: pointer;
 }

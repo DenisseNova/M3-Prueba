@@ -3,6 +3,24 @@ import Animales from "./consulta.js";
 
 let registar = []
 
+function mostrarModal(posicionAnimal){
+  console.log('mostrar modal')
+}
+window.mostrarModal = mostrarModal;
+
+function reproducirSonido(posicionAnimal){
+  const animalSeleccionado = registar[posicionAnimal]
+  switch(animalSeleccionado.Nombre){
+    case 'Leon': animalSeleccionado.Rugir(); break;
+    case 'Lobo': animalSeleccionado.Aullar(); break;
+    case 'Oso': animalSeleccionado.Grunir(); break;
+    case 'Serpiente': animalSeleccionado.Sisear(); break;
+    case 'Aguila': animalSeleccionado.Chillar(); break;
+  }
+}
+window.reproducirSonido = reproducirSonido;
+
+
 document.getElementById('btnRegistrar').addEventListener('click', async () => {
   let nombre = document.getElementById('animal');
   let edad = document.getElementById('edad');
@@ -21,13 +39,12 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
   registar.push(nuevoAnimal)
 
   let resultados = "" 
-  for(let item of registar){
-    console.log('animal', item)
+  for(let i = 0; i < registar.length; i++){
     resultados += ` 
         <div class="card micard">
-          <img src="${item.Imagenes}" class="card-img-top" alt="...">
+          <img src="${registar[i].Imagenes}" class="card-img-top" alt="..." onclick='mostrarModal(${i})'>
           <div class="card-body">
-            <i class="fas fa-volume-up"></i>
+            <i class="fas fa-volume-up" id="volumen" onclick='reproducirSonido(${i})'></i>
           </div>
         </div>
     `
@@ -36,3 +53,4 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
   document.getElementById('Animales').innerHTML = resultados
 
 })
+
