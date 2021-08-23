@@ -4,8 +4,13 @@ import Animales from "./consulta.js";
 let registar = []
 
 function mostrarModal(posicionAnimal){
-  console.log('mostrar modal')
+  const ImagenSeleccionada = registar[posicionAnimal]
+  switch(ImagenSeleccionada.Nombre){
+    case 'Leon': ImagenSeleccionada.Imagen, ImagenSeleccionada.Edad, ImagenSeleccionada.Comentarios ; break;
+  }
+  console.log(mostrarModal)
 }
+
 window.mostrarModal = mostrarModal;
 
 function reproducirSonido(posicionAnimal){
@@ -54,3 +59,6 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
 
 })
 
+//document.getElementById('exampleModal').addEventListener('click', mostrarModal)
+
+//document.getElementById('exampleModal').addEventListener('click', () => {})
