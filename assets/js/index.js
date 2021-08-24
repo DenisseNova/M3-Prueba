@@ -4,11 +4,22 @@ import Animales from "./consulta.js";
 let registar = []
 
 function mostrarModal(posicionAnimal){
-  const ImagenSeleccionada = registar[posicionAnimal]
-  switch(ImagenSeleccionada.Nombre){
-    case 'Leon': ImagenSeleccionada.Imagen, ImagenSeleccionada.Edad, ImagenSeleccionada.Comentarios ; break;
-  }
-  console.log(mostrarModal)
+  const detalleAnimal = document.getElementById('detalleAnimal');
+  detalleAnimal.innerHTML = '';
+
+  const ImagenSeleccionada = registar[posicionAnimal];
+
+  detalleAnimal.innerHTML = `
+  <div class="card">
+  <img src="${ImagenSeleccionada.Imagenes}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">${ImagenSeleccionada.Edad}</p>
+    <p class="card-text">Comentarios</p>
+    <p class="card-text">${ImagenSeleccionada.Comentarios}</p>
+  </div>
+</div>
+  `
+  $('#exampleModal').modal({  })
 }
 
 window.mostrarModal = mostrarModal;
@@ -30,24 +41,27 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
   let nombre = document.getElementById('animal');
   let edad = document.getElementById('edad');
   let comentarios = document.getElementById('comentarios');
+  if(!nombre.value || !edad.value || !comentarios.value) return alert('Debe completar los campos requeridos');  // validacion 
 
   const {animales} = await Animales.getData();
   const animalSelec = animales.find((a) => a.name == nombre.value);
   let nuevoAnimal = null
+
   switch(animalSelec.name){
-    case 'Leon': nuevoAnimal = new Leon(nombre.value, edad.value, animalSelec.imagen, comentarios, animalSelec.sonido); break;
-    case 'Lobo': nuevoAnimal = new Lobo(nombre.value, edad.value, animalSelec.imagen, comentarios, animalSelec.sonido); break;
-    case 'Oso': nuevoAnimal = new Oso(nombre.value, edad.value, animalSelec.imagen, comentarios, animalSelec.sonido); break;
-    case 'Serpiente': nuevoAnimal = new Serpiente(nombre.value, edad.value, animalSelec.imagen, comentarios, animalSelec.sonido);  break;
-    case 'Aguila': nuevoAnimal = new Aguila(nombre.value, edad.value, animalSelec.imagen, comentarios, animalSelec.sonido); break;
+    case 'Leon': nuevoAnimal = new Leon(nombre.value, edad.value, animalSelec.imagen, comentarios.value, animalSelec.sonido); break;
+    case 'Lobo': nuevoAnimal = new Lobo(nombre.value, edad.value, animalSelec.imagen, comentarios.value, animalSelec.sonido); break;
+    case 'Oso': nuevoAnimal = new Oso(nombre.value, edad.value, animalSelec.imagen, comentarios.value, animalSelec.sonido); break;
+    case 'Serpiente': nuevoAnimal = new Serpiente(nombre.value, edad.value, animalSelec.imagen, comentarios.value, animalSelec.sonido);  break;
+    case 'Aguila': nuevoAnimal = new Aguila(nombre.value, edad.value, animalSelec.imagen, comentarios.value, animalSelec.sonido); break;
   }
+  
   registar.push(nuevoAnimal)
 
   let resultados = "" 
   for(let i = 0; i < registar.length; i++){
     resultados += ` 
         <div class="card micard">
-          <img src="${registar[i].Imagenes}" class="card-img-top" alt="..." onclick='mostrarModal(${i})'>
+          <img src="${registar[i].Imagenes}" class="card-img-top imgfijo" alt="..." onclick='mostrarModal(${i})'>
           <div class="card-body">
             <i class="fas fa-volume-up" id="volumen" onclick='reproducirSonido(${i})'></i>
           </div>
@@ -55,8 +69,13 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
     `
   }
 
+
   document.getElementById('Animales').innerHTML = resultados
 
+  nombre.value = "";
+  edad.value = "";
+  comentarios.value = "";
+  document.getElementById('preview').style.removeProperty('background-image')
 })
 
 //document.getElementById('exampleModal').addEventListener('click', mostrarModal)

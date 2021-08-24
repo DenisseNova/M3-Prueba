@@ -11,6 +11,7 @@ class Animales {
     this.getNombre = () => Nombre;
     this.getEdad = () => Edad;
     this.getImg = () => Imagenes;
+    this.getComentarios = () => Comentarios;
     this.setComentarios = (nuevoComentarios) => Comentarios = nuevoComentarios;
     this.getSonido = () => Sonido;
   }
@@ -25,6 +26,9 @@ class Animales {
   }
   get Sonido(){
     return this.getSonido();
+  }
+  get Comentarios(){
+    return this.getComentarios()
   }
   set Comentarios (nuevoComentarios){
     return this.setComentarios(nuevoComentarios);

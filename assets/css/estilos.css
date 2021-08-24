@@ -6,9 +6,13 @@
 body {
   background-image: url("../imgs/fondo.jpg");
   background-position: bottom;
-  background-size: cover;
   background-repeat: no-repeat;
+  /*
+  background-size: cover;
   height: 100vh;
+  */
+  background-size: 100% 100%;
+  background-attachment: fixed;
   padding: 100px;
 }
 
@@ -45,11 +49,17 @@ body {
 /* Modal */
 
 .modal-dialog{
-    max-width: 85% !important;
+  max-width: 85% !important;
+  color: #ffffff;
+  text-align: center;
 }
-
+.imgfijo{
+  height: 170px;
+  object-fit: cover;
+}
 .card {
   background-color: #868686;
+  min-height: 200px;
 }
 .micard > div > i {
   font-size: 1.5rem;
